@@ -13,5 +13,19 @@ namespace PersonRelations
         {
 
         }
+
+        protected void SubmitBtn_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+
+                //Response.Redirect("ViewDetails.aspx");
+            }
+        }
+
+        protected void signUpBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SignUp.aspx");
+        }
     }
 }
