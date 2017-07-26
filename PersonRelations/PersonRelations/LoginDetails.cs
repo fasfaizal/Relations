@@ -18,7 +18,7 @@ namespace PersonRelations
             return dbExecutor.Execute(delegate (SqlCommand myCommand)
             {
                 int updatedRows;
-                myCommand.CommandText = string.Format("INSERT INTO LoginDetails VALUES({0},'{1}',{2})", personid, name, password);
+                myCommand.CommandText = string.Format("INSERT INTO LoginDetails VALUES({0},'{1}','{2}')", personid, name, password);
                 updatedRows = myCommand.ExecuteNonQuery();
                 return updatedRows;
             }

@@ -24,14 +24,14 @@
                 <asp:RequiredFieldValidator ID="runame" runat="server" ControlToValidate="uname" ErrorMessage="*Please enter a username" Font-Italic="true" ForeColor="Green"></asp:RequiredFieldValidator>
                 <br />
                 <label><b>Password</b></label>
-                <asp:TextBox  runat="server" placeholder="Enter Password" ID="password" CssClass="inputclass" TextMode="Password" ></asp:TextBox><br />
+                <asp:TextBox runat="server" placeholder="Enter Password" ID="password" CssClass="inputclass" TextMode="Password"></asp:TextBox><br />
                 <asp:RequiredFieldValidator ID="rpassword" runat="server" ControlToValidate="password" ErrorMessage="*Please enter a password" Font-Italic="true" ForeColor="Green"></asp:RequiredFieldValidator><br />
-                <asp:Button ID="SubmitBtn" runat="server" OnClick="SubmitBtn_Click" Text="Login" CssClass="btnclass"/>
-            </div>
-            <div class="text-center" style="background-color: #f1f1f1;height:50px;padding-top:20px">
-                <asp:LinkButton runat="server" ID="signUpBtn" Text="Sign Up" OnClick="signUpBtn_Click"></asp:LinkButton>
+                <asp:Button ID="SubmitBtn" runat="server" OnClick="SubmitBtn_Click" Text="Login" CssClass="btnclass" />
             </div>
         </form>
+        <div class="text-center" style="background-color: #f1f1f1; height: 50px; padding-top: 20px">
+            <a href="SignUp.aspx">Sign Up</a>
+        </div>
     </div>
 </body>
 </html>
