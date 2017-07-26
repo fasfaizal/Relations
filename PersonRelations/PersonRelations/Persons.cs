@@ -38,7 +38,7 @@ namespace PersonRelations
         }
 
 
-        protected static Persons Read(int id)
+        public static Persons Read(int id)
         {
             Persons persons = new Persons();
             DBExecutor<Persons> dbExecutor = new DBExecutor<Persons>();
