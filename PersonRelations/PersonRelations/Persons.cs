@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -24,7 +25,8 @@ namespace PersonRelations
             {
                 int PersonID=0;
                 SqlDataReader tableData;
-                myCommand.CommandText = string.Format("INSERT INTO Persons(FirstName,LastName,Gender,DOB,Biodata,ParentID,SpouseID,Image) VALUES('{0}','{1}','{2}','{3}','{4}',{5},{6},'{7}')", fname, lname, gender,dob,biodata,parent_id,spouse_id,image);
+                myCommand.CommandText = string.Format("INSERT INTO Persons(FirstName,LastName,Gender,DOB,Biodata,ParentID,SpouseID,Image) VALUES('{0}','{1}','{2}','{3}','{4}',{5},{6},@binary)", fname, lname, gender,dob,biodata,parent_id,spouse_id);
+                myCommand.Parameters.Add("@binary", SqlDbType.VarBinary, image.Length).Value = image;
                 myCommand.ExecuteNonQuery();
                 myCommand.CommandText = string.Format("SELECT IDENT_CURRENT('Persons') as ID ");
                 tableData = myCommand.ExecuteReader();
