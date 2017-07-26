@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 
-namespace InventoryManagement
+namespace PersonRelations
 {
     public class DBExecutor<T>
     {
