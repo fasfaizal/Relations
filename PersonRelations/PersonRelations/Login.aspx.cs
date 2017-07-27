@@ -21,13 +21,13 @@ namespace PersonRelations
                 var p = LoginDetails.Read(uname.Text);
                 if(p.UserName != null && p.Password==password.Text)
                 {
+                    Session["userId"] = p.PersonID;
                     Response.Redirect("ViewDetails.aspx");
                 }
                 else
                 {
                     invalidUser.Text = "*Invalid Username or Password";
                 }
-                //Response.Redirect("ViewDetails.aspx");
             }
         }
 

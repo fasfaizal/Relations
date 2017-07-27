@@ -9,23 +9,36 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <script type="text/javascript">
+        $(document).ready(function () {
+            $('#LabelSpouse').hide();
+            $('#Spouse').hide();
+            $('#LabelParent').hide();
+            $('#Parent').hide();
+
+            $("#Relation").change(function () {
+                console.log("fas");
+            });
+        });
+
+    </script>
 </head>
 <body>
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Relation</button>
+    <form id="form2" runat="server">
+        <asp:Button ID="LogoutBtn" Text="Logout" runat="server" OnClick="LogoutBtn_Click" Style="float:right" CssClass="btn btn-info" CausesValidation="false"/>
+        <asp:PlaceHolder ID="relationPlaceholder" runat="server"></asp:PlaceHolder>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" style="width: 100%">Add Relation</button>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Retion Details</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="form2" runat="server">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Retion Details</h4>
+                    </div>
+                    <div class="modal-body">
                         <div>
 
                             <asp:Label ID="FirstName" Text="First Name" runat="server"></asp:Label>
@@ -84,12 +97,11 @@
                             </asp:GridView>
                             <asp:Button ID="submit" Text="submit" runat="server" OnClick="submit_Click" Style="margin-left: 438px" />
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
-    <asp:Image ID="PersonImage" Height="500" Width="400" runat="server" />
+    </form>
 </body>
 </html>
