@@ -11,14 +11,22 @@ namespace PersonRelations
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         protected void SubmitBtn_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
-
+                var p = LoginDetails.Read(uname.Text);
+                if(p.UserName != null && p.Password==password.Text)
+                {
+                    Response.Redirect("ViewDetails.aspx");
+                }
+                else
+                {
+                    invalidUser.Text = "*Invalid Username or Password";
+                }
                 //Response.Redirect("ViewDetails.aspx");
             }
         }

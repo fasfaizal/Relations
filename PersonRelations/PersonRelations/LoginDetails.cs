@@ -29,7 +29,7 @@ namespace PersonRelations
             DBExecutor<LoginDetails> db = new DBExecutor<LoginDetails>();
             return db.Execute(delegate (SqlCommand cmd)
             {
-                cmd.CommandText = "SELECT * FROM LoginDetails WHERE UserName=" + uName;
+                cmd.CommandText = string.Format("SELECT * FROM LoginDetails WHERE UserName='{0}'" , uName);
                 var dr = cmd.ExecuteReader();
                 LoginDetails ib = new LoginDetails();
                 while (dr.Read())

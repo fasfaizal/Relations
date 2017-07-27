@@ -11,6 +11,13 @@ namespace PersonRelations
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var p = Persons.Read(19);
+            string strBase64 = Convert.ToBase64String(Persons.Read(19).Image);
+            PersonImage.ImageUrl = "data:Image/png;base64," + strBase64;
+        }
+
+        protected void submit_Click(object sender, EventArgs e)
+        {
 
         }
     }

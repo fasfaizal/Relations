@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="PersonRelations.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="PersonRelations.Login" EnableViewState="false" %>
 
 <!DOCTYPE html>
 
@@ -26,6 +26,7 @@
                 <label><b>Password</b></label>
                 <asp:TextBox runat="server" placeholder="Enter Password" ID="password" CssClass="inputclass" TextMode="Password"></asp:TextBox><br />
                 <asp:RequiredFieldValidator ID="rpassword" runat="server" ControlToValidate="password" ErrorMessage="*Please enter a password" Font-Italic="true" ForeColor="Green"></asp:RequiredFieldValidator><br />
+                <asp:Label runat="server" ID="invalidUser" Font-Italic="true" ForeColor="Green"></asp:Label><br />
                 <asp:Button ID="SubmitBtn" runat="server" OnClick="SubmitBtn_Click" Text="Login" CssClass="btnclass" />
             </div>
         </form>
