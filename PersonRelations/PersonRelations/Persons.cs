@@ -40,6 +40,18 @@ namespace PersonRelations
             );
         }
 
+        public void UpdateSpouseID(int personID,int spouseID)
+        {
+            DBExecutor<int> dbExecutor = new DBExecutor<int>();
+            dbExecutor.Execute(delegate (SqlCommand myCommand)
+            {
+                int PersonID;
+                myCommand.CommandText = string.Format("UPDATE Persons SET SPOUSEID={0} WHERE ID={1}",spouseID,personID);
+                PersonID= myCommand.ExecuteNonQuery();
+                return PersonID;
+            }
+            );
+        }
 
         public static Persons Read(int id)
         {

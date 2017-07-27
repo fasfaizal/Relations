@@ -157,94 +157,67 @@ namespace PersonRelations {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator BiodataValidator;
         
         /// <summary>
-        /// LUserName control.
+        /// Relationship control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LUserName;
+        protected global::System.Web.UI.WebControls.Label Relationship;
         
         /// <summary>
-        /// UserName control.
+        /// Relation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UserName;
+        protected global::System.Web.UI.WebControls.DropDownList Relation;
         
         /// <summary>
-        /// Usernamevalidator control.
+        /// ValidateRelation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Usernamevalidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidateRelation;
         
         /// <summary>
-        /// LPassword control.
+        /// LabelSpouse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LPassword;
+        protected global::System.Web.UI.WebControls.Label LabelSpouse;
         
         /// <summary>
-        /// Password control.
+        /// Spouse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Password;
+        protected global::System.Web.UI.WebControls.DropDownList Spouse;
         
         /// <summary>
-        /// PasswordValidator control.
+        /// LabelParent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordValidator;
+        protected global::System.Web.UI.WebControls.Label LabelParent;
         
         /// <summary>
-        /// LConfirmPassword control.
+        /// Parent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LConfirmPassword;
-        
-        /// <summary>
-        /// ConfirmPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ConfirmPassword;
-        
-        /// <summary>
-        /// Confirmpswdvalidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Confirmpswdvalidator;
-        
-        /// <summary>
-        /// cmpPswd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator cmpPswd;
+        protected global::System.Web.UI.WebControls.DropDownList Parent;
         
         /// <summary>
         /// ImageUpload control.
