@@ -18,6 +18,7 @@ namespace PersonRelations
         public int ParentID { get; set; }
         public int SpouseID { get; set; }
         public byte[] Image { get; set; }
+
         public int Save(string fname, string lname,string gender,string dob,string biodata,int parent_id,int spouse_id, byte[] image)
         {
             DBExecutor<int> dbExecutor = new DBExecutor<int>();
@@ -68,6 +69,63 @@ namespace PersonRelations
             return persons;
         }
 
+        public static Persons GetSpouse(int id)
+        {
+            Persons person = new Persons();
+            DBExecutor<Persons> dbExecutor = new DBExecutor<Persons>();
+            dbExecutor.Execute(delegate (SqlCommand myCommand)
+            {
+                SqlDataReader tableData;
+                myCommand.CommandText = string.Format("SELECT * FROM Persons WHERE SpouseID={0}", id);
+                tableData = myCommand.ExecuteReader();
+                while (tableData.Read())
+                {
+                    person.ID = Convert.ToInt32(tableData["ID"]);
+                    person.FName = Convert.ToString(tableData["FirstName"]);
+                    person.LName = Convert.ToString(tableData["LastName"]);
+                    person.Gender = Convert.ToString(tableData["Gender"]);
+                    person.Dob = Convert.ToString(tableData["DOB"]);
+                    person.Biodata = Convert.ToString(tableData["Biodata"]);
+                    person.ParentID = Convert.ToInt32(tableData["ParentID"]);
+                    person.SpouseID = Convert.ToInt32(tableData["SpouseID"]);
+                    person.Image = (byte[])tableData["Image"];
+                }
+
+                return person;
+            }
+            );
+            return person;
+        }
+
+        public static List<Persons> GetChildren(int id)
+        {
+            List<Persons> persons = new List<Persons>();
+            DBExecutor<List<Persons>> dbExecutor = new DBExecutor<List<Persons>>();
+            dbExecutor.Execute(delegate (SqlCommand myCommand)
+            {
+                SqlDataReader tableData;
+                myCommand.CommandText = string.Format("SELECT * FROM Persons WHERE ParentID={0}", id);
+                tableData = myCommand.ExecuteReader();
+                while (tableData.Read())
+                {
+                    Persons person = new Persons();
+                    person.ID = Convert.ToInt32(tableData["ID"]);
+                    person.FName = Convert.ToString(tableData["FirstName"]);
+                    person.LName = Convert.ToString(tableData["LastName"]);
+                    person.Gender = Convert.ToString(tableData["Gender"]);
+                    person.Dob = Convert.ToString(tableData["DOB"]);
+                    person.Biodata = Convert.ToString(tableData["Biodata"]);
+                    person.ParentID = Convert.ToInt32(tableData["ParentID"]);
+                    person.SpouseID = Convert.ToInt32(tableData["SpouseID"]);
+                    person.Image = (byte[])tableData["Image"];
+                    persons.Add(person);
+                }
+
+                return persons;
+            }
+            );
+            return persons;
+        }
 
     }
 }
