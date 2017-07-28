@@ -13,6 +13,10 @@ namespace PersonRelations
         private int userId { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["userId"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             if (!IsPostBack)
             {
                 LabelSpouse.Visible = false;
@@ -94,16 +98,7 @@ namespace PersonRelations
                     parentID = Convert.ToInt32(Parent.SelectedValue);
                 personID = persons.Save(FName.Text, LName.Text, Gender.Text, DOB.Text, Biodata.Text, parentID, spouseID, bytes);
                 persons.UpdateSpouseID(spouseID, personID);
-                Response.Redirect(Request.RawUrl);
             }
-        }
-
-        protected void Relation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LabelSpouse.Visible = true;
-            Spouse.Visible = true;
-            LabelParent.Visible = true;
-            Parent.Visible = true;
         }
     }
 }

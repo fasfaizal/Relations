@@ -48,12 +48,13 @@
                     <asp:DropDownList ID="Relation" runat="server" CssClass="relClass" AutoPostBack="true">
                         <asp:ListItem Value="0">select</asp:ListItem>
                     </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="ValidateRelation" runat="server" ControlToValidate="Relation" Font-Italic="true" ForeColor="Green" ErrorMessage="*Select Relation" EnableClientScript="true" InitialValue="0"></asp:RequiredFieldValidator>
                 </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="Spouse" />
                 </Triggers>
             </asp:UpdatePanel>
-            <asp:RequiredFieldValidator ID="ValidateRelation" runat="server" ControlToValidate="Relation" Font-Italic="true" ForeColor="Green" ErrorMessage="*Select Relation" EnableClientScript="true" InitialValue="0"></asp:RequiredFieldValidator>
+            
             <br />
             <br />
             <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always" ChildrenAsTriggers="true">
@@ -77,12 +78,13 @@
                     <asp:DropDownList ID="Parent" runat="server">
                         <asp:ListItem Value="0">select</asp:ListItem>
                     </asp:DropDownList>
+                    <%--<asp:RequiredFieldValidator ID="ValidateParent" runat="server" ControlToValidate="Parent" Font-Italic="true" ForeColor="Green" ErrorMessage="*Select Parent" EnableClientScript="true" InitialValue="0"></asp:RequiredFieldValidator>--%>
                 </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="Parent" />
                 </Triggers>
             </asp:UpdatePanel>
-            <%--<asp:RequiredFieldValidator ID="ValidateParent" runat="server" ControlToValidate="Parent" Font-Italic="true" ForeColor="Green" ErrorMessage="*Select Parent" EnableClientScript="true" InitialValue="0"></asp:RequiredFieldValidator>--%>
+            
             <br />
             <br />
             <asp:FileUpload ID="ImageUpload" runat="server" Style="margin-left: 150px; width: 50%;" />
@@ -93,6 +95,7 @@
                 </Columns>
             </asp:GridView>
             <asp:Button ID="submit" Text="submit" runat="server" OnClick="submit_Click" Style="margin-left: 438px" />
+            <a href="ViewDetails.aspx" target="_top">Close</a>  
         </div>
     </form>
 </body>
