@@ -17,7 +17,7 @@
             <asp:PlaceHolder ID="relationPlaceholder" runat="server"></asp:PlaceHolder>
             <asp:Button ID="BtnAddRelation" runat="server" OnClick="BtnAddRelation_Click" Style="float: right; width: 100%" Text="Add Relation" CssClass="btn btn-info" />
             <div id="iframediv">
-                <iframe id="AddRelation" src="AddRelation.aspx" runat="server" visible="false" width="50%" frameborder="0" height="600px" style:"ma"></iframe>
+                <iframe id="IAddRelation" src="AddRelation.aspx" runat="server" visible="false" style="width:75%;padding-left:400px;" frameborder="0" height="600" ></iframe>
             </div>
         </div>
     </form>

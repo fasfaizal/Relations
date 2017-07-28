@@ -126,9 +126,9 @@ namespace PersonRelations
 
         protected void BtnAddRelation_Click(object sender, EventArgs e)
         {
-            AddRelation.Visible = true;
+            IAddRelation.Visible = true;
             BtnAddRelation.Visible = false;
-            relationPlaceholder.Visible = false;
+            relationPlaceholder.Visible = false; 
         }
     }
 
