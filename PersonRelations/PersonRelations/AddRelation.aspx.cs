@@ -80,6 +80,7 @@ namespace PersonRelations
             byte[] bytes;
             if (ImageUpload.HasFile)
             {
+                userId = Convert.ToInt32(Session["userId"]);
                 string fileName = Path.GetFileName(ImageUpload.PostedFile.FileName);
                 BinaryReader binaryReader = new BinaryReader(ImageUpload.PostedFile.InputStream);
                 bytes = binaryReader.ReadBytes((int)ImageUpload.PostedFile.InputStream.Length);
