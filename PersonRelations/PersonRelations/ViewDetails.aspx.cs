@@ -29,56 +29,8 @@ namespace PersonRelations
             //var p = Persons.Read(19);
             //string strBase64 = Convert.ToBase64String(Persons.Read(19).Image);
             //PersonImage.ImageUrl = "data:Image/png;base64," + strBase64;
-
-            List<Persons> children = new List<Persons>();
-            Persons person = Persons.GetSpouse(userId);
-            if (person.FName == null)
-            {
-                Relation.Items.Add("Spouse");
-            }
-            else
-            {
-                children = Persons.GetChildren(userId);
-                Relation.Items.Add("Son");
-                Relation.Items.Add("Daughter");
-                Relation.Items.Add("Son In Law");
-                Relation.Items.Add("Daughter In Law");
-                Relation.Items.Add("Grandson");
-                Relation.Items.Add("Granddaughter");
-                foreach (Persons child in children)
-                {
-                    Parent.Items.Add(new ListItem(child.FName, Convert.ToString(child.ID)));
-                    Spouse.Items.Add(new ListItem(child.FName, Convert.ToString(child.ID)));
-                }
-            }
         }
-
-        protected void submit_Click(object sender, EventArgs e)
-        {
-            byte[] bytes;
-            if (ImageUpload.HasFile)
-            {
-                string fileName = Path.GetFileName(ImageUpload.PostedFile.FileName);
-                BinaryReader binaryReader = new BinaryReader(ImageUpload.PostedFile.InputStream);
-                bytes = binaryReader.ReadBytes((int)ImageUpload.PostedFile.InputStream.Length);
-                int personID;
-                Persons persons = new Persons();
-                string s = FirstName.Text;
-                int spouseID;
-                int parentID;
-                if (Relation.SelectedValue == "Spouse")
-                    spouseID = userId;
-                else
-                    spouseID = Convert.ToInt32(Spouse.SelectedValue);
-                if ((Relation.SelectedValue == "Son") || (Relation.SelectedValue == "Daughter"))
-                    parentID = userId;
-                else
-                    parentID = Convert.ToInt32(Parent.SelectedValue);
-                personID = persons.Save(FName.Text, LName.Text, Gender.Text, DOB.Text, Biodata.Text, parentID, spouseID, bytes);
-                persons.UpdateSpouseID(spouseID, personID);
-                Response.Redirect(Request.RawUrl);
-            }
-        }
+        
         public Table DisplayRelations(int id, Table table)
         {
             table.Attributes.Add("class", "table table-bordered");
@@ -170,6 +122,13 @@ namespace PersonRelations
             Session["userId"] = null;
             Response.Write("asddddddddddd");
             Response.Redirect("Login.aspx");
+        }
+
+        protected void BtnAddRelation_Click(object sender, EventArgs e)
+        {
+            AddRelation.Visible = true;
+            BtnAddRelation.Visible = false;
+            relationPlaceholder.Visible = false;
         }
     }
 
