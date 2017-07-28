@@ -12,6 +12,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
         <div>
             <asp:Label ID="FirstName" Text="First Name" runat="server"></asp:Label>
             <asp:TextBox ID="FName" runat="server"></asp:TextBox>
@@ -38,27 +40,51 @@
                 <asp:TextBox ID="Biodata" runat="server" TextMode="multiline" Columns="50" Rows="5"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="BiodataValidator" runat="server" ControlToValidate="Biodata" Font-Italic="true" ForeColor="Green" ErrorMessage="*Please Enter Value"></asp:RequiredFieldValidator>
             </p>
-            <br />
-            <asp:Label ID="Relationship" Text="Relation" runat="server"></asp:Label>
-            <asp:DropDownList ID="Relation" runat="server" CssClass="relClass">
-                <asp:ListItem Value="0">select</asp:ListItem>
-            </asp:DropDownList>
+            <br />      
+                                  
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always" ChildrenAsTriggers="true">
+                <ContentTemplate>
+                    <asp:Label ID="Relationship" Text="Relation" runat="server"></asp:Label>                    
+                    <asp:DropDownList ID="Relation" runat="server" CssClass="relClass" AutoPostBack="true">
+                        <asp:ListItem Value="0">select</asp:ListItem>
+                    </asp:DropDownList>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID="Spouse" />
+                </Triggers>
+            </asp:UpdatePanel>
             <asp:RequiredFieldValidator ID="ValidateRelation" runat="server" ControlToValidate="Relation" Font-Italic="true" ForeColor="Green" ErrorMessage="*Select Relation" EnableClientScript="true" InitialValue="0"></asp:RequiredFieldValidator>
             <br />
             <br />
+            <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always" ChildrenAsTriggers="true">
+                <ContentTemplate>                    
             <asp:Label ID="LabelSpouse" Text="Spouse" runat="server"></asp:Label>
-            <asp:DropDownList ID="Spouse" runat="server">
-                <asp:ListItem Value="0">select</asp:ListItem>
-            </asp:DropDownList>
+                    <asp:DropDownList ID="Spouse" runat="server">
+                        <asp:ListItem Value="0">select</asp:ListItem>
+                    </asp:DropDownList>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID="Spouse" />
+                </Triggers>
+            </asp:UpdatePanel>
             <%--<asp:RequiredFieldValidator ID="ValidateSpouse" runat="server" ControlToValidate="Spouse" Font-Italic="true" ForeColor="Green" ErrorMessage="*Select Spouse" EnableClientScript="true" InitialValue="0"></asp:RequiredFieldValidator>--%>
             <br />
             <br />
-            <asp:Label ID="LabelParent" Text="Parent" runat="server"></asp:Label>
-            <asp:DropDownList ID="Parent" runat="server">
-                <asp:ListItem Value="0">select</asp:ListItem>
-            </asp:DropDownList>
+
+            <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Always" ChildrenAsTriggers="true">
+                <ContentTemplate>
+                    <asp:Label ID="LabelParent" Text="Parent" runat="server"></asp:Label>
+                    <asp:DropDownList ID="Parent" runat="server">
+                        <asp:ListItem Value="0">select</asp:ListItem>
+                    </asp:DropDownList>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID="Parent" />
+                </Triggers>
+            </asp:UpdatePanel>
             <%--<asp:RequiredFieldValidator ID="ValidateParent" runat="server" ControlToValidate="Parent" Font-Italic="true" ForeColor="Green" ErrorMessage="*Select Parent" EnableClientScript="true" InitialValue="0"></asp:RequiredFieldValidator>--%>
-            <br /><br />
+            <br />
+            <br />
             <asp:FileUpload ID="ImageUpload" runat="server" Style="margin-left: 150px; width: 50%;" />
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" ShowHeader="false">
                 <Columns>

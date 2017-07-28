@@ -13,30 +13,62 @@ namespace PersonRelations
         private int userId { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            userId = Convert.ToInt32(Session["userId"]);
-            List<Persons> children = new List<Persons>();
-            Persons person = Persons.GetSpouse(userId);
-            if (person.FName == null)
+            if (!IsPostBack)
             {
-                Relation.Items.Add("Spouse");
+                LabelSpouse.Visible = false;
+                Spouse.Visible = false;
+                LabelParent.Visible = false;
+                Parent.Visible = false;
+                userId = Convert.ToInt32(Session["userId"]);
+                List<Persons> children = new List<Persons>();
+                Persons person = Persons.GetSpouse(userId);
+                if (person.FName == null)
+                {
+                    Relation.Items.Add(new ListItem("Spouse", "Spouse"));
+                }
+                else
+                {
+                    children = Persons.GetChildren(userId);
+                    Relation.Items.Add(new ListItem("Son", "Son"));
+                    Relation.Items.Add(new ListItem("Daughter", "Daughter"));
+                    Relation.Items.Add(new ListItem("Son In Law", "Son In Law"));
+                    Relation.Items.Add(new ListItem("Daughter In Law", "Daughter In Law"));
+                    Relation.Items.Add(new ListItem("Grandson", "Grandson"));
+                    Relation.Items.Add(new ListItem("Granddaughter", "Granddaughter"));
+                    foreach (Persons child in children)
+                    {
+                        if (child.SpouseID == 0)
+                            Spouse.Items.Add(new ListItem(child.FName, Convert.ToString(child.ID)));
+                        else
+                            Parent.Items.Add(new ListItem(child.FName, Convert.ToString(child.ID)));
+                    }
+                }
             }
             else
             {
-                children = Persons.GetChildren(userId);
-                Relation.Items.Add("Son");
-                Relation.Items.Add("Daughter");
-                Relation.Items.Add("Son In Law");
-                Relation.Items.Add("Daughter In Law");
-                Relation.Items.Add("Grandson");
-                Relation.Items.Add("Granddaughter");
-                foreach (Persons child in children)
+                if ((Relation.SelectedItem.Value == "Son In Law") || (Relation.SelectedItem.Value == "Daughter In Law"))
                 {
-                    if (child.SpouseID == 0)
-                        Spouse.Items.Add(new ListItem(child.FName, Convert.ToString(child.ID)));
-                    else
-                        Parent.Items.Add(new ListItem(child.FName, Convert.ToString(child.ID)));
+                    LabelSpouse.Visible = true;
+                    Spouse.Visible = true;
+                    LabelParent.Visible = false;
+                    Parent.Visible = false;
+                }
+                else if((Relation.SelectedItem.Value == "Grandson") || (Relation.SelectedItem.Value == "Granddaughter"))
+                {
+                    LabelParent.Visible = true;
+                    Parent.Visible = true;
+                    LabelSpouse.Visible = false;
+                    Spouse.Visible = false;
+                }
+                else
+                {
+                    LabelSpouse.Visible = false;
+                    Spouse.Visible = false;
+                    LabelParent.Visible = false;
+                    Parent.Visible = false;
                 }
             }
+
         }
 
         protected void submit_Click(object sender, EventArgs e)
@@ -64,6 +96,14 @@ namespace PersonRelations
                 persons.UpdateSpouseID(spouseID, personID);
                 Response.Redirect(Request.RawUrl);
             }
+        }
+
+        protected void Relation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LabelSpouse.Visible = true;
+            Spouse.Visible = true;
+            LabelParent.Visible = true;
+            Parent.Visible = true;
         }
     }
 }
